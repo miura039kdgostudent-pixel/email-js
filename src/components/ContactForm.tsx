@@ -114,6 +114,7 @@ function ContactForm() {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           className={subject === "" ? "is-empty" : ""}
+          /* subjectが未選択の場合のみ「is-empty」クラスを付けて文字色をグレーにする */
           >
           {/*valueが空の状態では、最初のoptionが表示される仕様を利用して、未選択状態を表すダミーの選択肢を初期表示として設定している。*/}
           <option value="" disabled hidden>件名を選択</option>
