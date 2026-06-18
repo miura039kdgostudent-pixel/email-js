@@ -6,6 +6,8 @@ import { useEmail } from "../hooks/useEmail";
 function ContactForm() {
   const { sendEmail } = useEmail();
   // useEmailカスタムフックからメール送信機能（sendEmail）だけを取り出して使えるようにしている
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // メールアドレスの形式が正しいかを判定する正規表現（@とドメイン構造があるかチェック）
 
   const [name, setName] = useState('')
   const [furigana, setFurigana] = useState("");
@@ -28,8 +30,8 @@ function ContactForm() {
       alert("フリガナを入力してください");
       return;
     }
-    //includesは文字列の中に指定した文字が含まれているかを調べるメソッドで、@が含まれていない場合にエラーを出すために使用している。
-    if (!email.includes("@")) {
+    // 入力されたメールアドレスが正しい形式でない場合にエラーを表示して処理を中断する
+    if (!emailRegex.test(email)) {
       alert("正しいメールアドレスを入力してください");
       return;
     }
