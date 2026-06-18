@@ -24,21 +24,38 @@ cssは全てAIに作成してもらいました。
     padding: 0;
   }
   
-  /* ==========================================
-     ヘッダー（ロゴとナビゲーション）
-     ========================================== */
-  header {
+/* ==========================================
+   ヘッダー（ロゴとナビゲーション）
+   ========================================== */
+   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 50px;
+    padding: 40px 50px; /* 上下の余白をデザインに合わせて少し広めに */
     max-width: 1200px;
     margin: 0 auto;
   }
   
-  header img {
-    height: 150px; /* ロゴサイズに合わせて調整済み */
+  /* ロゴとテキストを横並びにするスタイル */
+  .header-logo-set {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* ロゴとテキストの間のスキマ */
+  }
+  
+  .header-logo-set img {
+    height: 60px; /* デザイン画像の比率に合わせてスマートな高さに調整 */
+    width: auto;
     object-fit: contain;
+  }
+  
+  /* 追加した「TYPE SCRIPT」のテキストデザイン */
+  .header-title {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
   }
   
   nav ul {
@@ -190,18 +207,27 @@ cssは全てAIに作成してもらいました。
     letter-spacing: 1px;
   }
   
-  /* ==========================================
-     スマホ用のレスポンシブ対応
-     ========================================== */
-  @media (max-width: 650px) {
+/* ==========================================
+   スマホ用のレスポンシブ対応（最下部）
+   ========================================== */
+   @media (max-width: 650px) {
     header {
       padding: 20px;
-      flex-direction: column; /* スマホの時はロゴとナビを縦並びに */
-      gap: 15px;
+      flex-direction: column; /* スマホの時は全体を縦並びに */
+      gap: 20px;
     }
     
-    header img {
-      height: 80px; /* スマホだとロゴが大きすぎるので縮小 */
+    .header-logo-set {
+      flex-direction: column; /* スマホの時はロゴと文字も縦並びに */
+      gap: 10px;
+    }
+    
+    .header-logo-set img {
+      height: 50px; /* スマホ用に少し縮小 */
+    }
+  
+    .header-title {
+      font-size: 22px;
     }
   
     nav ul {
