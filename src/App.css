@@ -13,44 +13,45 @@
     min-height: 100vh;
   }
   
-  * {
+  /* ✨ すべての要素（フォームパーツも含めて）のフォントファミリーを統一 */
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: inherit; /* 親（body）のフォント設定を強制的に引き継がせる */
   }
   
-/* ==========================================
-   ヘッダー（ロゴとナビゲーション）
-   ========================================== */
-   header {
+  /* ==========================================
+     ヘッダー（ロゴとナビゲーション）
+     ========================================== */
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 50px; /* 上下の余白をデザインに合わせて少し広めに */
+    padding: 40px 50px;
     max-width: 1200px;
     margin: 0 auto;
   }
   
-  /* ロゴとテキストを横並びにするスタイル */
   .header-logo-set {
     display: flex;
     align-items: center;
-    gap: 20px; /* ロゴとテキストの間のスキマ */
+    gap: 20px;
   }
   
   .header-logo-set img {
-    height: 60px; /* デザイン画像の比率に合わせてスマートな高さに調整 */
+    height: 130px;
     width: auto;
     object-fit: contain;
   }
   
-  /* 追加した「TYPE SCRIPT」のテキストデザイン */
+  /* ✨ 個別の font-family 指定を削除し、全体のフォントに統一 */
   .header-title {
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 26px;        /* ほんの少しだけ小さくして馴染ませる */
+    font-weight: 500;       /* 絶妙なすっきりした太さに変更（boldを解除） */
+    letter-spacing: 4px;    /* 文字のスキマを広げてスタイリッシュに */
     color: #ffffff;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase; /* 念のため全て大文字で固定 */
   }
   
   nav ul {
@@ -119,7 +120,7 @@
   .form-group select,
   .form-group textarea {
     flex: 1;
-    width: 100%; /* 横幅一杯に広げる */
+    width: 100%;
     background: transparent;
     border: 1px solid #ffffff;
     color: #ffffff;
@@ -135,13 +136,11 @@
     border-color: #6375a1;
   }
   
-  /* プレースホルダーの色（inputとtextarea両方に適用） */
   .form-group input::placeholder,
   .form-group textarea::placeholder {
     color: #566382;
   }
   
-  /* セレクトボックス（件名）の設定 */
   .form-group select {
     cursor: pointer;
     appearance: none;
@@ -150,7 +149,7 @@
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 16px;
-    padding-right: 40px; /* 矢印と文字が被らないように幅を確保 */
+    padding-right: 40px;
   }
   
   .form-group select option {
@@ -158,7 +157,6 @@
     color: #ffffff;
   }
   
-  /* 未選択（件名を選択）の時の文字色 */
   .form-group select.is-empty {
     color: #566382;
   }
@@ -184,11 +182,18 @@
     letter-spacing: 4px;
     cursor: pointer;
     transition: background 0.2s;
-    white-space: nowrap; /* スマホで文字が縦に割れるのを防ぐ */
+    white-space: nowrap;
   }
   
   form button[type="submit"]:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* 送信中（disabled）の時のうっすらした見た目 */
+  form button[type="submit"]:disabled {
+    border-color: #566382;
+    color: #566382;
+    cursor: not-allowed;
   }
   
   /* ==========================================
@@ -202,23 +207,23 @@
     letter-spacing: 1px;
   }
   
-/* ==========================================
-   スマホ用のレスポンシブ対応（最下部）
-   ========================================== */
-   @media (max-width: 650px) {
+  /* ==========================================
+     スマホ用のレスポンシブ対応（最下部）
+     ========================================== */
+  @media (max-width: 650px) {
     header {
       padding: 20px;
-      flex-direction: column; /* スマホの時は全体を縦並びに */
+      flex-direction: column;
       gap: 20px;
     }
     
     .header-logo-set {
-      flex-direction: column; /* スマホの時はロゴと文字も縦並びに */
+      flex-direction: column;
       gap: 10px;
     }
     
     .header-logo-set img {
-      height: 50px; /* スマホ用に少し縮小 */
+      height: 50px;
     }
   
     .header-title {
