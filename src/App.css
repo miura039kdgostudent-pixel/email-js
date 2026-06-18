@@ -1,0 +1,225 @@
+/* ==========================================
+   全体ベース（ブラウザの余白リセット・線の削除）
+   ========================================== */
+   html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* 横スクロールによる線を防止 */
+    background: linear-gradient(180deg, #020715 0%, #061130 40%, #020715 100%);
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ==========================================
+     ヘッダー（ロゴとナビゲーション）
+     ========================================== */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  header img {
+    height: 150px; /* ロゴサイズに合わせて調整済み */
+    object-fit: contain;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 45px;
+  }
+  
+  nav li {
+    font-size: 23px;
+    font-weight: 400;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  /* ==========================================
+     メイン（見出しエリア）
+     ========================================== */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 50px 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 45px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+    color: #ffffff;
+  }
+  
+  main p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #b0b7c6;
+    margin-bottom: 70px;
+  }
+  
+  /* ==========================================
+     フォーム・入力欄
+     ========================================== */
+  form {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  
+  .form-group label {
+    width: 180px;
+    font-size: 15px;
+    color: #ffffff;
+    padding-top: 10px;
+  }
+  
+  /* 入力エリア共通スタイル */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group select,
+  .form-group textarea {
+    flex: 1;
+    width: 100%; /* 横幅一杯に広げる */
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 10px 14px;
+    font-size: 14px;
+    outline: none;
+    border-radius: 0;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: #6375a1;
+  }
+  
+  /* プレースホルダーの色（inputとtextarea両方に適用） */
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #566382;
+  }
+  
+  /* セレクトボックス（件名）の設定 */
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233b4867' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 40px; /* 矢印と文字が被らないように幅を確保 */
+  }
+  
+  .form-group select option {
+    background-color: #061130;
+    color: #ffffff;
+  }
+  
+  /* 未選択（件名を選択）の時の文字色 */
+  .form-group select.is-empty {
+    color: #566382;
+  }
+  
+  .form-group textarea {
+    resize: none;
+  }
+  
+  /* ==========================================
+     送信ボタン
+     ========================================== */
+  .btn-container {
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  form button[type="submit"] {
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 14px 30px;
+    font-size: 18px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap; /* スマホで文字が縦に割れるのを防ぐ */
+  }
+  
+  form button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* ==========================================
+     フッター
+     ========================================== */
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 1px;
+  }
+  
+  /* ==========================================
+     スマホ用のレスポンシブ対応
+     ========================================== */
+  @media (max-width: 650px) {
+    header {
+      padding: 20px;
+      flex-direction: column; /* スマホの時はロゴとナビを縦並びに */
+      gap: 15px;
+    }
+    
+    header img {
+      height: 80px; /* スマホだとロゴが大きすぎるので縮小 */
+    }
+  
+    nav ul {
+      gap: 25px;
+    }
+    
+    nav li {
+      font-size: 18px;
+    }
+  
+    h1 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+  
+    .form-group {
+      flex-direction: column;
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      width: 100%;
+      margin-bottom: 8px;
+      padding-top: 0;
+    }
+  }
