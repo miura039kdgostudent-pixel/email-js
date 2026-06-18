@@ -8,6 +8,8 @@ function ContactForm() {
   // useEmailカスタムフックからメール送信機能（sendEmail）だけを取り出して使えるようにしている
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // メールアドレスの形式が正しいかを判定する正規表現（@とドメイン構造があるかチェック）
+  const [loading, setLoading] = useState(false);
+  // ローディング状態を管理するためのstate（true=送信中 / false=通常状態）
 
   const [name, setName] = useState('')
   const [furigana, setFurigana] = useState("");
@@ -46,6 +48,9 @@ function ContactForm() {
       return;
     }
 
+    // 送信処理開始時にローディング状態をONにする
+    setLoading(true);
+
     // メール送信処理を実行（成功・失敗の可能性があるためtryで囲む）
     try {
       //sendEmailにはフォームで入力された名前・フリガナ・メールアドレス・件名・お問い合わせ内容をオブジェクトとして渡しており、EmailJSでメールを作成・送信するためのデータを指定している。
@@ -57,7 +62,7 @@ function ContactForm() {
         message,
       });
       
-      // 送信が成功した場合に表示するメッセージ
+      // 送信が成功した場合にユーザーへ完了メッセージを表示する
       alert("送信が完了しました");
       
       // 送信成功時にフォームをリセット
@@ -67,10 +72,11 @@ function ContactForm() {
       setSubject("");
       setMessage("");
     } catch (error) {
-      // 送信処理でエラーが発生した場合にここに入る
-      console.error(error);
-      // ユーザーに送信失敗を知らせるメッセージ
+      // 送信に失敗した場合にエラー処理を行う
       alert("送信に失敗しました。時間をおいて再度お試しください。");
+    }finally {
+      // 成功・失敗に関わらず必ずローディング状態をOFFに戻す
+      setLoading(false); // 必ず戻す
     }
   };
 
@@ -140,7 +146,11 @@ function ContactForm() {
       </div>
 
       <div className="btn-container">
-        <button type="submit">送信</button>
+        {/* ボタンの状態をローディングに応じて切り替える
+        loading=trueのときは「送信中...」表示＋ボタン無効化 */}
+        <button type="submit" disabled={loading}>
+          {loading ? "送信中..." : "送信"}
+        </button>
       </div>
     </form>
   )
